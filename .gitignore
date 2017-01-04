@@ -8,4 +8,6 @@ target
 *.iml
 *.ipr
 *.iws
-
+byteman-download-4.0.0-ALPHA
+out
+lib

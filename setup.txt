@@ -1,0 +1,18 @@
+1. There are currently three macros to use, but the master one is "mbtm"
+  # extract ..
+  # rm -r ~/workspace/byteman/lib; unzip ~/workspace/byteman/download/target/byteman-download-4.0.0-ALPHA-bin.zip; mv ~/workspace/byteman/download/target/byteman-download-4.0.0-ALPHA ~/workspace/byteman; mv ~/workspace/byteman/byteman-download-4.0.0-ALPHA/lib ~/workspace/byteman/lib;
+  # movelib ..  
+  # function movelib
+	mv ~/workspace/byteman/byteman-download-4.0.0-ALPHA/lib ~/workspace/byteman/lib
+end
+  # mbtm ..
+  # function mbtm
+	mvn clean package; extract; movelib
+end
+  # mbtm causes a maven build of byteman, extracts the jar, and moves it to the lib folder
+2. Must set the byteman home env variable, in fish this can be done by: 
+  # set -Ux BYTEMAN_HOME ~/workspace/byteman
+  # the -U flag will make it universal, and persist reboots apparently ..
+3. Run byteman on the test file:
+  # java -javaagent:$BYTEMAN_HOME/lib/byteman.jar=script:example-rule.btm Hello
+  # will attache the byteman jar as the java agent, loading the btm as a script, and run Hello
